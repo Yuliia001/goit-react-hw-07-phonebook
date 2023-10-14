@@ -9,7 +9,8 @@ import {
   Title,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts, getContacts } from 'redux/contacts/sliceContacts';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -33,7 +34,7 @@ const ContactSchema = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = (values, actions) => {
     const dublicateContact = contacts.some(
@@ -43,7 +44,7 @@ export const ContactForm = () => {
     if (dublicateContact) {
       return alert(`${values.name} already in contact list!`);
     }
-    dispatch(addContacts(values));
+    dispatch(addContact(values));
 
     actions.resetForm();
   };
