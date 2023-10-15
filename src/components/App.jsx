@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
+import { Loader } from './Loader/Loader';
+import { Error } from './Error/Error.styled';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,8 +23,11 @@ export const App = () => {
     <Layout>
       <ContactForm />
       <Filter />
-      {isLoading && !error}
+      {isLoading && <Loader />}
       <ContactList />
+      {error && (
+        <Error>Oops! Something went wrong. Please reload the page.</Error>
+      )}
       <GlobalStyle />
     </Layout>
   );

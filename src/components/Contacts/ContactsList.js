@@ -6,6 +6,7 @@ import { filteredContacts } from 'redux/contacts/selectors';
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(filteredContacts);
+
   return (
     <>
       <Title>Contacts</Title>

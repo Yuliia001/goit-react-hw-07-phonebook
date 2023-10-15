@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addContact, deleteContact, fetchContacts } from './operations';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
 
 export const initialStateContacts = {
   items: [],
@@ -50,15 +48,7 @@ const handlerFulfilledAdd = (state, action) => {
 const handleFullfiledDelete = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.items = state.items.filter(contact => contact.id !== action.payload);
+  state.items = state.items.filter(contact => contact.id !== action.payload.id);
 };
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
 
-// export const contactsReducer = persistReducer(
-//   persistConfig,
-//   contactsSlice.reducer
-// );
 export const contactsReducer = contactsSlice.reducer;
